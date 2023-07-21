@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Admin Panal</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+    html, body {
+        width: 100%;
+        height: 100%;
+        font-family: "Georgia", sans-serif;
+        color: #444;
+        -webkit-font-smoothing: antialiased;
+        background: #9b9a9a;
+    }
+    /* Set the width of the side navigation to 250px */
+    .sidenav {
+        height: 100%;
+        width: 250px;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #4c4f53;
+        overflow-x: hidden;
+        padding-top: 20px;
+    }
+
+    /* Style the side navigation links */
+    .sidenav a {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #f2f2f2;
+        display: block;
+    }
+
+    /* Change the color of the links on hover */
+    .sidenav a:hover {
+        background-color: #434daf;
+        color: rgb(247, 240, 240);
+    }
+
+    /* Add an active class to the active/current link */
+    .sidenav a.active {
+        background-color: #2d3585;
+        color: white;
+    }
+
+    /* Style the content */
+    .content {
+        margin-left: 250px;
+        padding-left: 20px;
+        height: 100%;
+    }
+
+    h1{
+        font-size: xx-large;
+        text-align: center;
+        margin-top: 20%;
+    }
+
+    p{
+        padding-left: 3%;
+    }
+
+    #container {
+        position: Relative;
+        width: 800px;
+        height: 225px;
+        margin: auto;
+        background: #fff;
+        border-radius: 3px;
+        border: 2px solid #969595;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+        overflow-x: auto;
+    }
+
+    ul  {
+        padding-left: 3%;
+        float: left;
+        width: 200px;   
+        height: 30px;
+    }
+    form label{
+    display: flex;
+    margin-top: 20px;
+    font-size: 18px;
+    }
+    
+    form input{
+        width: 85%;
+        padding: 7px;
+        border: none;
+        border: 1px solid gray;
+        border-radius: 3px;
+        outline: none;
+    } 
+    input[type="submit"] {
+        width: 95%;
+        height: 35px;
+        margin-top: 20px;
+        border: none;
+        background-color: #434daf;
+        color: white;
+        font-size: 18px;
+    }
+    .form {
+        width: 30%;
+        height: 500px;
+        margin: auto;
+        margin-top: 1%;
+        padding-top: 1px;
+        padding-left: 10px;
+        padding-bottom: 2%;
+        background-color: white;
+        border-radius: 3px;
+    }
+    </style>
+</head>
+
+<body>
+<div class="sidenav">
+    <a class="active" href="">Provider Accounts</a>
+    <a href="{% url 'admin_patients' %}">Patients</a>
+    <a href="">Schedule</a>
+    <a href="{% url 'admin_medications' %}">Medications</a>
+    <a href="{% url 'logout' %}">Logout</a>
+</div>
+{% for x in out %}
+<div class="box">
+    <div id="container">
+        <p> Name : {{x.first_name}}{{x.last_name}}</p>
+        <p> Phone : {{x.phone}}</p>
+        <p> Spacialty : {{x.specialty}}</p>
+        <p> Email : {{x.email}} </p>
+        <p> Address : {{x.address}}</p>
+        <p> Organization : {{x.organization}}</p>
+    </div>
+</div>
+{% endfor %}
+<div class="form">
+    <form method="POST" action="{% url 'admin_add_provider' %}">
+        {% csrf_token %}
+       {{form.as_p}}
+       <input type="submit" value="Add Provider Account">
+    </form>
+</div>
+</html>

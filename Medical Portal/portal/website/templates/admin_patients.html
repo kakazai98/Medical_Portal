@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Admin Panal</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+    html, body {
+        width: 100%;
+        height: 100%;
+        font-family: "Georgia", sans-serif;
+        color: #444;
+        -webkit-font-smoothing: antialiased;
+        background: #9b9a9a;
+    }
+    /* Set the width of the side navigation to 250px */
+    .sidenav {
+        height: 100%;
+        width: 250px;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #4c4f53;
+        overflow-x: hidden;
+        padding-top: 20px;
+    }
+
+    /* Style the side navigation links */
+    .sidenav a {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #f2f2f2;
+        display: block;
+    }
+
+    /* Change the color of the links on hover */
+    .sidenav a:hover {
+        background-color: #434daf;
+        color: rgb(247, 240, 240);
+    }
+
+    /* Add an active class to the active/current link */
+    .sidenav a.active {
+        background-color: #2d3585;
+        color: white;
+    }
+
+    /* Style the content */
+    .content {
+        margin-left: 250px;
+        padding-left: 20px;
+        height: 100%;
+    }
+
+    h1{
+        font-size: xx-large;
+        text-align: center;
+        margin-top: 20%;
+    }
+
+    p{
+        padding-left: 3%;
+    }
+
+    #container {
+        position: Relative;
+        width: 800px;
+        height: 500px;
+        margin: auto;
+        background: #fff;
+        border-radius: 3px;
+        border: 2px solid #969595;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+        overflow-x: auto;
+    }
+    
+    
+    </style>
+</head>
+
+<body>
+<div class="sidenav">
+    <a href="{% url 'admin' %}">Provider Accounts</a>
+    <a class="active" href="">Patients</a>
+    <a href="">Schedule</a>
+    <a href="{% url 'admin_medications' %}">Medications</a>
+    <a href="{% url 'logout' %}">Logout</a>
+</div>
+{% for x in out %}
+<div class="box">
+    <div id="container">
+        <p> Name : {{x.first_name}} {{x.last_name}}</p>
+        <p> Phone : {{x.phone}}</p>
+        <p> Date of Birth : {{x.dob}}</p>
+        <p> Email : {{x.email}} </p>
+        <p> Address : {{x.address}}</p>
+        <p> Gender : {{x.gender}}</p>
+        <p> Allergies :</p>
+        <ul>
+            {% for allergy in x.allergies.all %}
+            <p>Allergen : {{ allergy.allergen }}</p><p> Reaction: {{ allergy.reaction }}</p> <p>   Severity {{ allergy.severity }}</p>
+            <p>--------------------------------------------</p>
+            {% endfor %}
+        </ul>
+        <p> Medications :</p>
+        <ul>
+            {% for medication in x.medications.all %}
+            <p>{{ medication}}</p>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endfor %}
+
+
+</html>

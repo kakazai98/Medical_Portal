@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Sign Up</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      '{%if message != None %}'
+         alert('{{ message }}');
+      '{%endif%}'
+  </script>
+  
+<style>
+body {
+    background-color: #344a72;
+    font-family: "Roboto", sans-serif;
+  }
+  
+  .signup-box {
+    width: 30%;
+    height: 70%;
+    margin: auto;
+    padding-bottom: 2%;
+    background-color: white;
+    border-radius: 3px;
+  }
+  
+  h1 {
+    text-align: center;
+    padding-top: 15px;
+  }
+  
+  h4 {
+    text-align: center;
+  }
+  
+  form {
+    width: 400px;
+    margin-left: 20px;
+    max-width: 90%;
+  }
+  
+  form label{
+    display: flex;
+    margin-top: 20px;
+    font-size: 18px;
+  }
+  
+  form input{
+    width: 85%;
+    padding: 7px;
+    border: none;
+    border: 1px solid gray;
+    border-radius: 6px;
+    outline: none;
+  } 
+  input[type="submit"] {
+    width: 95%;
+    height: 35px;
+    margin-top: 20px;
+    border: none;
+    background-color: #49c1a2;
+    color: white;
+    font-size: 18px;
+  }
+  p {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 15px;
+  }
+  .para-2 {
+    text-align: center;
+    color: white;
+    font-size: 15px;
+    margin-top: -10px;
+  }
+  .para-2 a {
+    color: #49c1a2;
+  }
+  
+</style>
+<!-- Add the required CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css">
+
+<!-- Add the required JavaScript -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js"></script>
+
+<!-- Add the initialization script -->
+<script>
+    $(function () {
+        $('.datepicker').datetimepicker({
+            format: 'YYYY-MM-DD',  // Set the desired date format
+            // Add any additional configuration options if needed
+        });
+    });
+</script>
+  </head>
+  <body>
+    <div class="signup-box">
+      <h1>Sign Up</h1>
+      <form method="POST" action="{% url 'signup' %}">
+        {% csrf_token %} 
+        <div>
+          {{ form }}
+        </div> 
+         <input type="submit" value="Sign In">
+      </form>
+    </div>
+    <p class="para-2">
+      Already have an account? <a href="{% url 'login' %}">Login here</a>
+    </p>
+  </body>
+</html>
+
+
+
+
+
+
+    

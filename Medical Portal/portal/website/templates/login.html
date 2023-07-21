@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Login</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      '{%if message != None %}'
+         alert('{{ message }}');
+      '{%endif%}'
+  </script>
+  
+<style>
+body {
+    background-color: #344a72;
+    font-family: "Roboto", sans-serif;
+  }
+  
+  .signup-box {
+    width: 30%;
+    height: 70%;
+    margin: auto;
+    padding-bottom: 2%;
+    background-color: white;
+    border-radius: 3px;
+  }
+  
+  h1 {
+    text-align: center;
+    padding-top: 15px;
+  }
+  
+  h4 {
+    text-align: center;
+  }
+  
+  form {
+    width: 400px;
+    margin-left: 20px;
+    max-width: 90%;
+  }
+  
+  form label{
+    display: flex;
+    margin-top: 20px;
+    font-size: 18px;
+  }
+  
+  form input{
+    width: 85%;
+    padding: 7px;
+    border: none;
+    border: 1px solid gray;
+    border-radius: 6px;
+    outline: none;
+  } 
+  input[type="submit"] {
+    width: 95%;
+    height: 35px;
+    margin-top: 20px;
+    border: none;
+    background-color: #49c1a2;
+    color: white;
+    font-size: 18px;
+  }
+  p {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 15px;
+  }
+  .para-2 {
+    text-align: center;
+    color: white;
+    font-size: 15px;
+    margin-top: -10px;
+  }
+  .para-2 a {
+    color: #49c1a2;
+  }
+
+</style>
+  </head>
+  <body>
+    <div class="signup-box">
+      <h1>Login</h1>
+      {% if error_message %}
+        <p class="error">{{ error_message }}</p>
+      {% endif %}
+      <form method="POST" action="{% url 'login' %}">
+         <div>
+          {% csrf_token %} 
+          {{ form }}
+        </div> 
+         <input type="submit" value="Login">
+      </form>
+    </div>
+    <p class="para-2">
+      Need an account? <a href="{% url 'signup' %}">Singup here</a>
+    </p>
+  </body>
+</html>
+
+
+
+
+
+
+    
